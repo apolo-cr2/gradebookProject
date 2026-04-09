@@ -21,9 +21,10 @@
 int main()
 {
     int modify_choice, selection_choice;
-    /*int student_ID;*/
+    
+    /*int student_ID; or int id*/
     /*double grade_point_average;*/
-    /*char student_name;*/
+    /*char student_name; or char name;*/
     
     
     
@@ -46,6 +47,7 @@ int main()
             case 1:
                 /*We will call the Add method here...*/
                 printf("Activating ADD Method...\n");
+                /*add();*/     /*This is a method Call...*/
                 break;
                 
             case 2: 
