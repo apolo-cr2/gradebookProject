@@ -22,6 +22,9 @@ int main()
 {
     int modify_choice, selection_choice;
     
+    /*double grade_point_Average;*/
+    /*char student_Name;*/
+    
     
     
     printf("Greetings, you are now logged in the Gradebook program...\n\n");
