@@ -21,9 +21,9 @@
 int main()
 {
     int modify_choice, selection_choice;
-    
-    /*double grade_point_Average;*/
-    /*char student_Name;*/
+    /*int student_ID;*/
+    /*double grade_point_average;*/
+    /*char student_name;*/
     
     
     
