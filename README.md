@@ -1,6 +1,6 @@
 **********************************************************************************************************************************************************
 This is the final project for the course CSC251 at CSUDH for the Spring of 2026. Members of this repository include:
-1. Alejandro Polo Bicenio (Group Leader)
+1. Alejandro Polo Briceno (Group Leader)
 2. Ivan Ceballos
 3. Frederick H. Fox
 4. Luqman Shah
