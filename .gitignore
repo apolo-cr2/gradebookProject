@@ -1,0 +1,9 @@
+# --------------------------------------------
+# 
+# --------------------------------------------
+# Ignores vscode build executables: 
+.vs/
+
+# Ignores C executables:
+*.exe
+*.out
