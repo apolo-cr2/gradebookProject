@@ -96,26 +96,41 @@ int main()
     
     
     
-    printf("logging in...\n Welcome to the Gradebook program...\n\n");
+    printf("logging in...\nWelcome to the Gradebook program...\n\n");
     
-    /*
+    
     FILE * fptr;
     
     //Open a file in read mode.
     fptr = fopen(GRADEBOOK_DATA_FILE, "r");
     
+    // Store the content of the file.
+    char gradebook_string[MAX_LENGTH_OF_LINE];
     
     
-    if(fptr == NULL)
+    //If the file does exist:
+    if (fptr != NULL)
     {
+      printf("***********************************************************\n");
+      printf("Presenting preliminary information extracted from the file:\n\n");
+    
+      //Read the file's content and print it to the user:
+      while(fgets(gradebook_string, MAX_LENGTH_OF_LINE, fptr))
+      {
+         printf("\t%s", gradebook_string);
+      }
+      
+      
+      
+    } else {
        printf("Loading unsuccessful:\n\tERROR CODE 505: File does not exist\n"); 
     }
     
     fclose(fptr);
-    */
     
     
-    printf("Do you want to use the gradebook program?\n\tYes = Press any whole number>>\n\tNo = Press 0>>\n\n");
+    
+    printf("\n\nDo you want to use the gradebook program?\n\tYes = Press any whole number>>\n\tNo = Press 0>>\n\n");
     scanf("%d", &modify_choice);
     
     
@@ -186,3 +201,4 @@ int main()
     return 0;
 }
 /*************************Method main ENDS HERE*******************************/
+
