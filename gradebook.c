@@ -36,14 +36,14 @@
 
 
 typedef struct {
-    int student_id_nmbr;   
     char student_name[MAX_LENGTH_OF_NAME + 1];
+    int student_id_nmbr;
     double student_score[NUMBR_OF_SCORES];
 } Student;
 
 typedef enum {
-    SORT_ID = 1,
-    SORT_NAME = 2,
+    SORT_NAME = 1,
+    SORT_ID = 2,
     SORT_AVRG = 3
 } SortKey;
 
@@ -198,8 +198,43 @@ int main()
                 break;
             
             case 6: 
-                /*We will call the Sort methods here...*/
-                printf("Activating Sort Method...\n");
+                int sortChoice;
+
+                printf("Activating Sort Methods...\n");
+                printf("Select a sorting method:\n");
+                while (1)
+                {
+                    printf("1. Sort by Name\n");
+                    printf("2. Sort by ID Number\n");
+                    printf("3. Sort by Grade Average\n");
+                    printf("Selection (type 1, 2, or 3):");
+                    scanf("%d", &sortChoice);
+
+                    if (sortChoice >= 1 && sortChoice <= 3)
+                        {
+                            break;
+                        }
+                    printf("Invalid option. Enter a correct number.\n");
+                }
+
+                    if (sortChoice == 1)
+                    {
+                        sortByName();
+                        printf("Student List - Sorted By Name\n");
+                        //printStudents();
+                    }
+                    else if (sortChoice == 2)
+                    {
+                        //sortByID();
+                        printf("Student List - Sorted By ID\n");
+                        //printStudents();
+                    }
+                    else
+                    {
+                        //sortByGradeAverage();
+                        printf("Student List - Sorted By Grade Average\n");
+                        //printStudents();
+                    }
                 break;
                 
             case 7: 
