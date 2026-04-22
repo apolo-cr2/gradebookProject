@@ -47,6 +47,9 @@ typedef enum {
     SORT_AVRG = 3
 } SortKey;
 
+//Global Variable Section
+int studentCount = 0;
+Student students[MAX_NUMBR_OF_STUDENTS];
 
 /**************************************************************************
                     
@@ -66,9 +69,33 @@ static void print_gradebook_menu(void){
    printf("\t7. Statistics || Calculate class average>>\n\n");
    
    printf("***********************************************\n");
+}
 /***************************print_gradebook_menu() ENDS HERE***************/   
 
 
+/**************************************************************************
+
+                            Method sortByName
+
+**************************************************************************/
+void sortByName() {
+
+    Student temp;
+
+    for (int i = 0; i < studentCount - 1; i++)
+    {
+        for (int j = i + 1; j < studentCount; j++)
+        {
+            if (strcmp(students[i].student_name, students[j].student_name) > 0)
+            {
+                temp = students[i];
+                students[i] = students[j];
+                students[j] = temp;
+            }
+        }
+    }
+}
+/***************************sortByName() ENDS HERE*************************/
 
 
 /**************************************************************************
@@ -76,7 +103,7 @@ static void print_gradebook_menu(void){
                             Method print_exit_message
 
 ***************************************************************************/
-}
+
 
 static void print_exit_message(void){
     printf("You have pressed 0\nExiting Program...\nHave a nice day!!!");
@@ -171,8 +198,8 @@ int main()
                 break;
             
             case 6: 
-                /*We will call the Sort method here...*/
-                printf("Activating calculateAverage Method...\n");
+                /*We will call the Sort methods here...*/
+                printf("Activating Sort Method...\n");
                 break;
                 
             case 7: 
