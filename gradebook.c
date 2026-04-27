@@ -99,6 +99,58 @@ void sortByName() {
 
 
 /**************************************************************************
+
+                            Method sortByID 
+
+**************************************************************************/
+void sortByID() {
+
+    Student temp;
+
+    for (int i = 0; i < studentCount - 1; i++)
+    {
+        for (int j = i + 1; j < studentCount; j++)
+        {
+            if (students[i].student_id_nmbr > students[j].student_id_nmbr)
+            {
+                temp = students[i];
+                students[i] = students[j];
+                students[j] = temp;
+            }
+        }
+    }
+}
+/***************************sortByID() ENDS HERE*************************/
+
+
+/**************************************************************************
+
+                            Method sortByGradeAverage
+
+**************************************************************************/
+void sortByGradeAverage() {
+
+    Student temp;
+
+    for (int i = 0; i < studentCount - 1; i++)
+    {
+        for (int j = i + 1; j < studentCount; j++)
+        {
+            double avg_i = (students[i].student_score[0] + students[i].student_score[1] + students[i].student_score[2]) / NUMBR_OF_SCORES;
+            double avg_j = (students[j].student_score[0] + students[j].student_score[1] + students[j].student_score[2]) / NUMBR_OF_SCORES;
+
+            if (avg_i > avg_j)
+            {
+                temp = students[i];
+                students[i] = students[j];
+                students[j] = temp;
+            }
+        }
+    }
+}
+/***************************sortByGradeAverage() ENDS HERE*****************/
+
+/**************************************************************************
                     
                             Method print_exit_message
 
@@ -225,13 +277,13 @@ int main()
                     }
                     else if (sortChoice == 2)
                     {
-                        //sortByID();
+                        sortByID();
                         printf("Student List - Sorted By ID\n");
                         //printStudents();
                     }
                     else
                     {
-                        //sortByGradeAverage();
+                        sortByGradeAverage();
                         printf("Student List - Sorted By Grade Average\n");
                         //printStudents();
                     }
