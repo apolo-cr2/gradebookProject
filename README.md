@@ -11,8 +11,8 @@ Project Name: Gradebook Project
 
 Project Purpose: The purpose of the gradebook final project is to manage student records such as ID number, names, and grades across multiple runs without corrupting the file.
 
-Project Objectives
-******************
+Project Objectives:
+
 1. Build a working gradebook menu that correctly takes an input from the user and takes them to their selection choice: adding/deleting, finding, updating, listing, sorting, statistics, demo.
 2. Build a loop that takes the user back to the gradebook menu after making their previous selection choice.
 3. Create methods for all selection choices and make sure they run as intended:
@@ -27,8 +27,12 @@ Project Objectives
 
 Project Notes: ADD HERE
 **********************************************************************************************************************************************************
-"Keep a concise README with build/run instructions, input formats, known limitations, and a short work breakdown that maps features or modules to 
-contributors."
+BUILD/RUN INSTRUCTIONS:
 
-THIS IS WHERE WE WILL PUT THE INFO ABOVE.
+INPUT FORMATS:
+
+LIMITATIONS:
+
+BREAKDOWN OF EACH MEMBER'S CONTRIUBTION:
+
 **********************************************************************************************************************************************************
