@@ -25,7 +25,14 @@ Project Objectives:
    - Demo: Prints a demo output with pre-populated students, including any students the user enters themselves, and applies certain methods such as sorting by grade average and updating.
 4. Run the program plenty of times with multiple students populated and ensure it does not break or terminate.
 
-Project Notes: ADD HERE
+Project Notes:
+
+- There are certain topics used in this project that were not covered in the lectures. Instead, we used w3schools.com to research the necessary material to create our program how we envisioned it. Some of these include:
+  - Arrays
+  - Typedef Structures
+  - Parsing
+  - Reading and Writing to Files
+  - Enumeration
 **********************************************************************************************************************************************************
 BUILD/RUN INSTRUCTIONS:
 
