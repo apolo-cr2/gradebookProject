@@ -922,10 +922,37 @@ Luqman put delete method here:
 
 
 /****************************************************************************
-Alejandro put find method here:
-    
+Alejandro - find method:
 ****************************************************************************/
 
+/**************************************************************************
+                    
+                        Method find_student_ui
+
+***************************************************************************/
+
+static void find_student_ui(const Student my_students[], int my_count)
+{
+   int my_id;
+   int my_index;
+
+   if(!my_prompt_int("Enter ID number to find: ", &my_id))
+   {
+      return;
+   }
+   
+   my_index = find_my_student_index_by_id(my_students, my_count, my_id);
+   
+   if(my_index < 0)
+   {
+      printf("The student was not found.\n");
+      return;
+   }
+   
+   print_header();
+   print_student_info(&my_students[my_index]);
+   
+}
 
 /****************************************************************************
 Ivan put update method here:
