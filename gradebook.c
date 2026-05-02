@@ -967,10 +967,10 @@ static void add_my_student(Student my_students[], int *my_count)
     }
 
     my_students[*my_count] = my_stu;
-    (my_count)++;
+    (*my_count)++;
 
     if (!save_my_students(my_students, *my_count)) {
-        (my_count)--;
+        (*my_count)--;
         printf("Save failed; add rolled back.\n");
         return;
     }
