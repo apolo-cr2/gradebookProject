@@ -164,7 +164,7 @@ static int read_line_stdin(char *buffer, size_t size)
   
                     parse_int_strict method       
     
-/*************************************************************************/
+*************************************************************************/
 static int parse_int_strict(const char *text, int *my_out_value)
 {
    char *endptr;
@@ -257,7 +257,7 @@ static int valid_my_score(double my_score)
 
                    valid_my_name method                    
 
-/*************************************************************************/
+*************************************************************************/
 static int valid_my_name(const char *my_name)
 {
    size_t i;
@@ -291,7 +291,7 @@ static int valid_my_name(const char *my_name)
 
                    student_is_valid Method                    
 
-/*************************************************************************/
+*************************************************************************/
 static int student_is_valid(const Student *s)
 {
    int i;
@@ -325,7 +325,7 @@ static int student_is_valid(const Student *s)
 
                    student_is_valid Method                    
 
-/*************************************************************************/
+*************************************************************************/
 static double average_of_student(const Student *s)
 {
    int i;
@@ -353,7 +353,7 @@ static double average_of_student(const Student *s)
          
                     find_my_student_index_by_id Method                  
 
-/*************************************************************************/
+*************************************************************************/
 static int find_my_student_index_by_id(const Student my_students[], int count, int id)
 {
    int i;
@@ -377,7 +377,7 @@ static int find_my_student_index_by_id(const Student my_students[], int count, i
          
                      write_my_student Method                  
 
-/*************************************************************************/
+*************************************************************************/
 static int write_my_student(FILE *fptr, const Student *s)
 {
    if(fptr == NULL || s == NULL)
@@ -397,7 +397,7 @@ static int write_my_student(FILE *fptr, const Student *s)
          
                       parse_my_student_line Method                  
 
-/*************************************************************************/
+*************************************************************************/
 static int parse_my_student_line(const char *my_line, Student *out_my_student)
 {
    char my_buffer[MAX_LENGTH_OF_LINE];
@@ -649,7 +649,7 @@ static int save_my_students(const Student my_students[], int count)
 
                compare_my_students Method
 
-/*************************************************************************/
+*************************************************************************/
 static int compare_my_students(const Student *s1, const Student *s2, SortKey my_key)
 {
 
@@ -723,7 +723,7 @@ static int compare_my_students(const Student *s1, const Student *s2, SortKey my_
 
                 Method insertion_sort_my_students
 
-/**********************************************************************************/
+**********************************************************************************/
 
 static void insertion_sort_my_students(Student my_students[], int my_count, SortKey my_key )
 {
@@ -742,6 +742,10 @@ static void insertion_sort_my_students(Student my_students[], int my_count, Sort
       my_students[j + 1] = current_student;
    }
 }
+/******************************************************************************************/
+
+
+
 
 
 /******************************************************************************************
@@ -765,7 +769,7 @@ static void print_header(void)
 
                     Method print_student_info
 
-/********************************************************************************************/
+********************************************************************************************/
 static void print_student_info(const Student *s)
 {
    printf("\n%-10d %-30s %-10.2f %-10.2f %-10.2f %-10.2f\n", 
@@ -789,7 +793,7 @@ static void print_student_info(const Student *s)
 
                         Method list_my_students
 
-/*********************************************************************************************/
+*********************************************************************************************/
 static void list_my_students(const Student my_students[], int my_count)
 {
    int i;
@@ -921,11 +925,12 @@ static int prompt_my_name(const char *my_prompt, char *out_my_name, size_t out_m
 /**************************************************************************/
 
 
-
-
 /****************************************************************************
-luqman put add method here:*/
-    static void add_my_student(Student my_students[], int my_count)
+
+                        add_my_student                    
+
+****************************************************************************/
+static void add_my_student(Student my_students[], int my_count)
 {
    Student my_stu;
    int i;
@@ -974,8 +979,11 @@ luqman put add method here:*/
 
 }
 /*****************************************************************************/
+
+
 /****************************************************************************
-Luqman put delete method here:
+
+                        delete_student method
    
 ****************************************************************************/
 
@@ -1028,9 +1036,7 @@ static void delete_student(Student students[], int count) {
 
     printf("Student deleted.\n");
 }
-/****************************************************************************
-Alejandro - find method:
-****************************************************************************/
+/*************************************************************************/
 
 /**************************************************************************
                     
@@ -1205,20 +1211,137 @@ static void sort_students_ui(Student array_of_students[], int count) {
 }
 
 /****************************************************************************
-Frederick put stats method here:
-   stats_ui()
+
+                stats_ui method
+
 ****************************************************************************/
+static void stats_ui(const Student stats_students_array[], int student_count) {
+    int i;
+    int pass_count = 0;
+    int high_id_num = 0;
+    int low_id_num = 0;
+    double total_avrg = 0.0;
+    double high_avrg;
+    double low_avrg;
+
+    if (student_count == 0) {
+        printf("\nNo records available.\n");
+        return;
+    }
+
+    high_avrg = average_of_student(&stats_students_array[0]);
+    low_avrg = average_of_student(&stats_students_array[0]);
+
+    for (i = 0; i < student_count; i++) {
+        double avrg = average_of_student(&stats_students_array[i]);
+        total_avrg += avrg;
+
+        if (avrg > high_avrg) {
+            high_avrg = avrg;
+            high_id_num = i;
+        }
+        if (avrg < low_avrg) {
+            low_avrg = avrg;
+            low_id_num = i;
+        }
+        if (avrg >= 60.0) {
+            pass_count++;
+        }
+    }
+
+
+    printf("*******************************************************************\n");
+    printf("\nGradebook Statistics\n");
+    printf("*******************************************************************\n");
+    
+    printf("\tStudents: %d\n", student_count);
+    printf("\tClass average: %.2f\n", total_avrg / (double)student_count);
+    printf("\tHighest average: %.2f (%s, ID %d)\n",
+           high_avrg, 
+           stats_students_array[high_id_num].student_name, 
+           stats_students_array[high_id_num].student_id_nmbr);
+           
+           
+    printf("\tLowest average: %.2f (%s, ID %d)\n",
+           low_avrg, 
+           stats_students_array[low_id_num].student_name, 
+           stats_students_array[low_id_num].student_id_nmbr);
+           
+           
+    printf("\tPass rate: %.2f%%\n", (100.0 * (double)pass_count) / (double)student_count);
+    printf("*******************************************************************\n");
+    
+}
+/****************************************************************************/
 
 /****************************************************************************
-Frederick put demo method here:
-   run_gradebook_demo(myStudents, &count);
+                      run_gradebook_demo method
 ****************************************************************************/
+static void run_gradebook_demo(Student array_of_students[], int *count) {
+    Student my_demo[3];
+    int i;
+    int idx;
+
+    my_demo[0].student_id_nmbr = 101;
+    strcpy(my_demo[0].student_name, "John Wick");
+    my_demo[0].student_score[0] = 99.8;
+    my_demo[0].student_score[1] = 91.0;
+    my_demo[0].student_score[2] = 94.7;
+
+    my_demo[1].student_id_nmbr = 103;
+    strcpy(my_demo[1].student_name, "Sabrina Carpenter");
+    my_demo[1].student_score[0] = 90.7;
+    my_demo[1].student_score[1] = 58.4;
+    my_demo[1].student_score[2] = 99.3;
+    
+    my_demo[2].student_id_nmbr = 106;
+    strcpy(my_demo[2].student_name, "Tommy Shelby");
+    my_demo[2].student_score[0] = 95.7;
+    my_demo[2].student_score[1] = 97.4;
+    my_demo[2].student_score[2] = 89.3;
+
+    for (i = 0; i < 3; i++) {
+        if (find_my_student_index_by_id(array_of_students, *count, my_demo[i].student_id_nmbr) < 0) {
+            if (*count < MAX_NUMBR_OF_STUDENTS) {
+                array_of_students[*count] = my_demo[i];
+                (*count)++;
+            }
+        }
+    }
+
+    if (!save_my_students(array_of_students, *count)) {
+        printf("Demo save has failed.\n");
+        return;
+    }
+
+    printf("\nAfter add:\n");
+    list_my_students(array_of_students, *count);
 
 
 
+    printf("\nAfter sort by average:\n");
+    insertion_sort_my_students(array_of_students, *count, SORT_AVRG);
+    list_my_students(array_of_students, *count);
 
+    idx = find_my_student_index_by_id(array_of_students, *count, 103);
+    if (idx >= 0) {
+        array_of_students[idx].student_score[0] = 40.0;
+        array_of_students[idx].student_score[1] = 72.0;
+        array_of_students[idx].student_score[2] = 94.0;
+    }
 
+    if (!save_my_students(array_of_students, *count)) {
+        printf("Warning: Demo update save has failed.\n");
+        return;
+    }
 
+    printf("\nAfter update:\n");
+    list_my_students(array_of_students, *count);
+
+    printf("\nStats:\n");
+    stats_ui(array_of_students, *count);
+}
+/*****************************************************************************/
 
 
 
