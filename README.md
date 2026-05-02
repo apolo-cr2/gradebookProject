@@ -33,6 +33,7 @@ Project Notes:
   - Parsing
   - Reading and Writing to Files
   - Enumeration
+- Because C and Java are closely related, we used previous CSC Java courses that contained the same strucutre/thematics to build our code.
 **********************************************************************************************************************************************************
 BUILD/RUN INSTRUCTIONS:
 
