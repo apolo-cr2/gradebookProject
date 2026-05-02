@@ -912,15 +912,110 @@ static int prompt_my_name(const char *my_prompt, char *out_my_name, size_t out_m
 
 
 /****************************************************************************
-luqman put add method here:
-    
-****************************************************************************/
+luqman put add method here:*/
+    static void add_my_student(Student my_students[], int my_count)
+{
+   Student my_stu;
+   int i;
+
+   if (my_count >= MAX_NUMBR_OF_STUDENTS) {
+        printf("Gradebook is full.\n");
+        return;
+    }
+
+    if (!my_prompt_int("Enter ID: ", &my_stu.student_id_nmbr)) {
+        return;
+    }
+
+    if (find_my_student_index_by_id(my_students, my_count, my_stu.student_id_nmbr) != -1) {
+        printf("ID already exists.\n");
+        return;
+    }
+
+    if (!prompt_my_name("Enter name: ", my_stu.student_name, sizeof(my_stu.student_name))) {
+        return;
+    }
+
+    for (i = 0; i < NUMBR_OF_SCORES; i++) {
+        char prompt[32];
+        (void)snprintf(prompt, sizeof(prompt), "Enter score %d: ", i + 1);
+        if (!prompt_my_score(prompt, &my_stu.student_score[i])) {
+            return;
+        }
+    }
+
+    if (!student_is_valid(&my_stu)) {
+        printf("Invalid student record.\n");
+        return;
+    }
+
+    my_students[my_count] = my_stu;
+    (my_count)++;
+
+    if (!save_my_students(my_students,my_count)) {
+        (*my_count)--;
+        printf("Save failed; add rolled back.\n");
+        return;
+    }
+
+    printf("Student added.\n");
+
+}
+/*****************************************************************************/
 /****************************************************************************
 Luqman put delete method here:
    
 ****************************************************************************/
 
+static void delete_student(Student students[], int count) {
+    int stu_id;
+    int index;
+    char line[MAX_LENGTH_OF_LINE];
+    Student removed;
+    int i;
 
+    if (!my_prompt_int("Enter ID to delete: ", &stu_id)) {
+        return;
+    }
+
+    index = find_my_student_index_by_id(students,count, stu_id);
+    if (index < 0) {
+        printf("Student not found.\n");
+        return;
+    }
+
+    printf("Delete %d - %s ? Type YES to confirm: ",
+           students[index].student_id_nmbr, students[index].student_name);
+
+    if (!read_line_stdin(line, sizeof(line))) {
+        return;
+    }
+    trim_my_whitespace(line);
+
+    if (strcmp(line, "YES") != 0) {
+        printf("Delete cancelled.\n");
+        return;
+    }
+
+    removed = students[index];
+
+    for (i = index; i < count - 1; i++) {
+        students[i] = students[i + 1];
+    }
+    (count)--;
+
+    if (!save_my_students(students, count)) {
+        for (i =count; i > index; i--) {
+            students[i] = students[i - 1];
+        }
+        students[index] = removed;
+        (*count)++;
+        printf("Save failed; delete rolled back.\n");
+        return;
+    }
+
+    printf("Student deleted.\n");
+}
 /****************************************************************************
 Alejandro - find method:
 ****************************************************************************/
