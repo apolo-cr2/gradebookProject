@@ -719,17 +719,29 @@ static int compare_my_students(const Student *s1, const Student *s2, SortKey my_
 
 
 
-/*********************************************************************************/
-/*IVAN ADD insertion_sort_my_students SORT HERE */
+/*********************************************************************************
+
+                Method insertion_sort_my_students
+
 /**********************************************************************************/
 
+static void insertion_sort_my_students(Student my_students[], int my_count, SortKey my_key )
+{
+   int i;
 
-
-
-
-
-
-
+   for(i = 1; i < my_count; i++)
+   {
+      Student current_student = my_students[i];
+      int j = i - 1;
+      
+      while (j >= 0 && compare_my_students(&my_students[j], &current_student, my_key) > 0)
+      {
+         my_students[j + 1] = my_students[j];
+         j--;
+      }
+      my_students[j + 1] = current_student;
+   }
+}
 
 
 /******************************************************************************************
@@ -1050,17 +1062,147 @@ static void find_student_ui(const Student my_students[], int my_count)
 }
 
 /****************************************************************************
-Ivan put update method here:
+
+                Method update_student
    
 ****************************************************************************/
 
 
+static void update_student(Student students_array[], int my_count) {
+    int student_id;
+    int index;
+    Student updated_info;
+    Student original_info;
+    char line[MAX_LENGTH_OF_LINE];
+    int i;
+
+    if (!my_prompt_int("Enter ID to update: ", &student_id)) 
+    {
+        return;
+    }
+
+    index = find_my_student_index_by_id(students_array, my_count, student_id);
+    if (index < 0) 
+    {
+        printf("Student not found.\n");
+        return;
+    }
+
+    updated_info = students_array[index];
+    original_info = students_array[index];
+
+    printf("Leave field blank to keep the current value.\n");
+
+    printf("New name [%s]: ", updated_info.student_name);
+    if (!read_line_stdin(line, sizeof(line))) 
+    {
+        return;
+    }
+    trim_my_whitespace(line);
+    if (line[0] != '\0') 
+    {
+        if (!valid_my_name(line)) 
+        {
+            printf("Invalid name. Update cancelled.\n");
+            return;
+        }
+        strcpy(updated_info.student_name, line);
+    }
+
+    for (i = 0; i < NUMBR_OF_SCORES; i++) 
+    {
+        double value;
+        printf("New score %d [%.2f]: ", i + 1, updated_info.student_score[i]);
+        if (!read_line_stdin(line, sizeof(line))) 
+        {
+            return;
+        }
+        trim_my_whitespace(line);
+
+        if (line[0] != '\0') 
+        {
+            if (!parse_double_strict(line, &value) || !valid_my_score(value)) 
+            {
+                printf("Invalid score. Update cancelled.\n");
+                return;
+            }
+            updated_info.student_score[i] = value;
+        }
+    }
+
+    if (!student_is_valid(&updated_info)) 
+    {
+        printf("Updated record invalid.\n");
+        return;
+    }
+
+    students_array[index] = updated_info;
+
+    if (!save_my_students(students_array, my_count)) 
+    {
+        students_array[index] = original_info;
+        printf("Save failed; update rolled back.\n");
+        return;
+    }
+
+    printf("Student updated.\n");
+}
 
 /****************************************************************************
-Ivan put sort method here:
+
+                Method sort_students_ui
    
 ****************************************************************************/
 
+static void sort_students_ui(Student array_of_students[], int count) {
+    int user_choice;
+    char line[MAX_LENGTH_OF_LINE];
+
+    if (count == 0) 
+    {
+        printf("No records to sort.\n");
+        return;
+    }
+    
+    printf("*************************************\n");
+    printf("\nSort by the following choices:\n");
+    printf("\t1. ID ascending\n");
+    printf("\t2. Name ascending\n");
+    printf("\t3. Average descending\n");
+    printf("*************************************\n");
+    
+    if (!my_prompt_int("Enter choice: ", &user_choice)) 
+    {
+        return;
+    }
+
+    if (user_choice < 1 || user_choice > 3) 
+    {
+        printf("Invalid choice.\n");
+        return;
+    }
+
+    insertion_sort_my_students(array_of_students, count, (SortKey)user_choice);
+    printf("Sorted in memory. Save order to file? (y/n): ");
+
+    if (!read_line_stdin(line, sizeof(line))) 
+    {
+        return;
+    }
+    trim_my_whitespace(line);
+
+    if (line[0] == 'y' || line[0] == 'Y') 
+    {
+        if (!save_my_students(array_of_students, count)) 
+        {
+            printf("Failed to save sorted order.\n");
+            return;
+        }
+        printf("Sorted order saved.\n");
+    } else {
+        printf("Sorted order not saved.\n");
+    }
+}
 
 /****************************************************************************
 Frederick put stats method here:
