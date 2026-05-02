@@ -1,0 +1,4 @@
+106|Tommy Shelby|99.70|97.40|89.30
+101|John Wick|99.99|67.67|76.76
+103|Sabrina Carpenter|40.00|72.00|94.00
+406|Luke Skywalker|77.77|87.98|19.83
