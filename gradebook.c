@@ -930,12 +930,12 @@ static int prompt_my_name(const char *my_prompt, char *out_my_name, size_t out_m
                         add_my_student                    
 
 ****************************************************************************/
-static void add_my_student(Student my_students[], int my_count)
+static void add_my_student(Student my_students[], int *my_count)
 {
    Student my_stu;
    int i;
 
-   if (my_count >= MAX_NUMBR_OF_STUDENTS) {
+   if (*my_count >= MAX_NUMBR_OF_STUDENTS) {
         printf("Gradebook is full.\n");
         return;
     }
@@ -944,7 +944,7 @@ static void add_my_student(Student my_students[], int my_count)
         return;
     }
 
-    if (find_my_student_index_by_id(my_students, my_count, my_stu.student_id_nmbr) != -1) {
+    if (find_my_student_index_by_id(my_students, *my_count, my_stu.student_id_nmbr) != -1) {
         printf("ID already exists.\n");
         return;
     }
@@ -966,11 +966,11 @@ static void add_my_student(Student my_students[], int my_count)
         return;
     }
 
-    my_students[my_count] = my_stu;
+    my_students[*my_count] = my_stu;
     (my_count)++;
 
-    if (!save_my_students(my_students,my_count)) {
-        (*my_count)--;
+    if (!save_my_students(my_students, *my_count)) {
+        (my_count)--;
         printf("Save failed; add rolled back.\n");
         return;
     }
@@ -987,7 +987,7 @@ static void add_my_student(Student my_students[], int my_count)
    
 ****************************************************************************/
 
-static void delete_student(Student students[], int count) {
+static void delete_student(Student students[], int *count) {
     int stu_id;
     int index;
     char line[MAX_LENGTH_OF_LINE];
@@ -998,7 +998,7 @@ static void delete_student(Student students[], int count) {
         return;
     }
 
-    index = find_my_student_index_by_id(students,count, stu_id);
+    index = find_my_student_index_by_id(students, *count, stu_id);
     if (index < 0) {
         printf("Student not found.\n");
         return;
@@ -1019,17 +1019,17 @@ static void delete_student(Student students[], int count) {
 
     removed = students[index];
 
-    for (i = index; i < count - 1; i++) {
+    for (i = index; i < *count - 1; i++) {
         students[i] = students[i + 1];
     }
     (count)--;
 
-    if (!save_my_students(students, count)) {
-        for (i =count; i > index; i--) {
+    if (!save_my_students(students, *count)) {
+        for (i = *count; i > index; i--) {
             students[i] = students[i - 1];
         }
         students[index] = removed;
-        (*count)++;
+        (count)++;
         printf("Save failed; delete rolled back.\n");
         return;
     }
