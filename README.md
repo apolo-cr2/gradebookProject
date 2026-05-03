@@ -86,6 +86,7 @@ BREAKDOWN OF EACH MEMBER'S CONTRIUBTION:
    - 'update_student'
    - 'sort_students_ui'
    - 'insertion_sort_my_students'
+   - Constructing the README
 2. FREDERICK
    - 'stats_ui'
    - 'parse_int_strict'
@@ -95,12 +96,15 @@ BREAKDOWN OF EACH MEMBER'S CONTRIUBTION:
    - 'parse_my_student_line'
    - 'print_gradebook_menu'
    - 'print_exit_message'
+   - Constructing the Preliminary Logic before building code
 3. LUQMAN
    - 'add_my_student'
    - 'delete_student'
+   - Assisted with the creation of other methods
 4. ALEJANDRO
    - 'find_my_student_index_by_id'
    - 'find_student_ui'
+   - Creating the GitHub repository and handling any error cases
 
 Any other methods not listed here was done with equal contribution from each member. 
 
