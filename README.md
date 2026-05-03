@@ -37,10 +37,62 @@ Project Notes:
 **********************************************************************************************************************************************************
 BUILD/RUN INSTRUCTIONS:
 
+1. Clone the git repository using SSH key and open the folder in VSCode.
+2. Once the folder is open, click Run and in the terminal, press 1 and click enter to open the menu.
+3. A series of options will appear, enter the corresponding number of your selection choice.
+4. Follow the steps for each selection:
+   i. 1: Add Student
+      - Enter the new student's ID number: cannot exceed number 5800.
+      - Enter the new student's name: cannot exceed 70 characters total.
+      - Enter the new sutdent's 1st, 2nd, and 3rd score: must be in between 0.00 and 100.00
+  ii. 2: Find Student
+      - Enter a student's ID number to display their all of their information.
+ iii. 3: Update Student
+      - Enter a student's ID number to update their information.
+      - Enter a new name for the student. If you wish to keep the name, leave the field blank.
+      - Enter a new score for the 1st, 2nd, and 3rd scores. If you wish to keep all, two, or one exam score, leave those fields blank.
+  iv. 4: Delete Student
+      - Enter a student's ID number to delete that student.
+      - Once the student is selected, type "YES" to delete them. If you wish to keep them, leave the field blank.
+   v. 5: List Student
+      - Once selected, the students will be listed.
+  vi. 6: Sort Student
+      - Enter the corresponding number of how the students should be listed: by ID, Name ascending, or Average descending.
+      - Enter "y" to save the sorting choice to the file. Enter "n" to not save the sorting choice to the file.
+ Vii. 7: Statistics
+      - Once selected, information regarding the class will be displayed.
+viii. 8: Run Demo
+      - Once selected, the terminal will showcase the use cases for the add, sort, update, and statistics functions.
+  ix. 9: Exit Program
+      - Once selected, the program will terminate, closing the gradebook.
+5. After selection choice is completed, press 1 to return to the gradebook menu.
+
+
 INPUT FORMATS:
+
+The input format for the students and their information are int, char, and double values respectively.
+
 
 LIMITATIONS:
 
 BREAKDOWN OF EACH MEMBER'S CONTRIUBTION:
+
+1. IVAN
+   - 'update_student'
+   - 'sort_students_ui'
+   - 'insertion_sort_my_students'
+2. FREDERICK
+   - 'stats_ui'
+   - 'parse_int_strict'
+   - 'parse_double_strict'
+   - 'run_gradebook_demo'
+   - 'write_my_student'
+   - 'parse_my_student_line'
+3. LUQMAN
+   - 'add_my_student'
+   - 'delete_student'
+4. ALEJANDRO
+   - 'find_my_student_index_by_id'
+   - 'find_student_ui'
 
 **********************************************************************************************************************************************************
