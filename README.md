@@ -44,9 +44,9 @@ BUILD/RUN INSTRUCTIONS:
    - 1: Add Student
       - Enter the new student's ID number: cannot exceed number 5800.
       - Enter the new student's name: cannot exceed 70 characters total.
-      - Enter the new sutdent's 1st, 2nd, and 3rd score: must be in between 0.00 and 100.00
+      - Enter the new student's 1st, 2nd, and 3rd score: must be in between 0.00 and 100.00
    - 2: Find Student
-      - Enter a student's ID number to display their all of their information.
+      - Enter a student's ID number to display all of their information.
    - 3: Update Student
       - Enter a student's ID number to update their information.
       - Enter a new name for the student. If you wish to keep the name, leave the field blank.
