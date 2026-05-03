@@ -45,6 +45,51 @@ typedef enum {
     SORT_NAME = 2,
     SORT_AVRG = 3
 } SortKey;
+
+
+
+/**************************************************************************
+            Method Prototype Section  
+*************************************************************************/
+static void trim_my_newline(char *s);
+static void trim_my_whitespace(char *s);
+static int read_line_stdin(char *buffer, size_t size);
+static int parse_int_strict(const char *text, int *my_out_value);
+static int parse_double_strict(const char *text, double *out_value);
+static int valid_my_score(double my_score);
+static int valid_my_name(const char *my_name);
+static int student_is_valid(const Student *s);
+static double average_of_student(const Student *s);
+static int find_my_student_index_by_id(const Student my_students[], int count, int id);
+static int write_my_student(FILE *fptr, const Student *s);
+static int parse_my_student_line(const char *my_line, Student *out_my_student);
+static int load_students_from_gradebook(Student myStudents[], int *count);
+static int save_my_students(const Student my_students[], int count);
+static int compare_my_students(const Student *s1, const Student *s2, SortKey my_key);
+static void insertion_sort_my_students(Student my_students[], int my_count, SortKey my_key);
+static void print_header(void);
+static void print_student_info(const Student *s);
+static void list_my_students(const Student my_students[], int my_count);
+static int my_prompt_int(const char *my_prompt, int *out_my_value);
+static int prompt_my_score(const char *my_prompt, double *out_my_value);
+static int prompt_my_name(const char *my_prompt, char *out_my_name, size_t out_my_size);
+static void add_my_student(Student my_students[], int *my_count);
+static void delete_student(Student students[], int *count);
+static void find_student_ui(const Student my_students[], int my_count);
+static void update_student(Student students_array[], int my_count);
+static void sort_students_ui(Student array_of_students[], int count);
+static void stats_ui(const Student stats_students_array[], int student_count);
+static void run_gradebook_demo(Student array_of_students[], int *count);
+static void print_gradebook_menu(void);
+static void print_exit_message(void);
+/**************************************************************************/
+//                   END OF METHOD PROTOTYPE SECTION
+/**************************************************************************/
+
+
+
+
+
 /**************************************************************************
 
             trim_my_newline method  
@@ -243,7 +288,7 @@ static int parse_double_strict(const char *text, double *out_value) {
 
 /**************************************************************************
 
-                    parse_double_strict method                    
+                     valid_my_score method                    
 
 ************************************************************************/
 static int valid_my_score(double my_score)
@@ -323,7 +368,7 @@ static int student_is_valid(const Student *s)
 
 /**************************************************************************
 
-                   student_is_valid Method                    
+                    average_of_student Method                    
 
 *************************************************************************/
 static double average_of_student(const Student *s)
@@ -1022,14 +1067,14 @@ static void delete_student(Student students[], int *count) {
     for (i = index; i < *count - 1; i++) {
         students[i] = students[i + 1];
     }
-    (count)--;
+    (*count)--;
 
     if (!save_my_students(students, *count)) {
         for (i = *count; i > index; i--) {
             students[i] = students[i - 1];
         }
         students[index] = removed;
-        (count)++;
+        (*count)++;
         printf("Save failed; delete rolled back.\n");
         return;
     }
