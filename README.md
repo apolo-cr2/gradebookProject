@@ -75,6 +75,11 @@ The input format for the students and their information are int, char, and doubl
 
 LIMITATIONS:
 
+- All of our schedule's did not line up how we wanted, so that made the process of completing the code challenging.
+- The Parsing in our code took many attempts to get right. Frederick was in charge of the parsing functions and ran through many iterations of the code to get it to how the group envisioned.
+- Because our knowledge of C was limited to the material in the course, we used the website w3schools.com to research the necessary material to build our code. This took time to understand and implement certain topics in our code.
+
+
 BREAKDOWN OF EACH MEMBER'S CONTRIUBTION:
 
 1. IVAN
@@ -88,11 +93,15 @@ BREAKDOWN OF EACH MEMBER'S CONTRIUBTION:
    - 'run_gradebook_demo'
    - 'write_my_student'
    - 'parse_my_student_line'
+   - 'print_gradebook_menu'
+   - 'print_exit_message'
 3. LUQMAN
    - 'add_my_student'
    - 'delete_student'
 4. ALEJANDRO
    - 'find_my_student_index_by_id'
    - 'find_student_ui'
+
+Any other methods not listed here was done with equal contribution from each member. 
 
 **********************************************************************************************************************************************************
