@@ -1,0 +1,20 @@
+106|Tommy Shelby|99.70|97.40|89.30
+101|John Wick|99.99|67.67|76.76
+103|Sabrina Carpenter|40.00|72.00|94.00
+406|Luke Skywalker|77.77|87.98|19.83
+200|Tony Stark|90.20|88.90|95.82
+201|Mary Jane|60.34|83.40|67.76
+202|Peter Parker|30.40|54.65|34.65
+203|Bruce Banner|87.87|90.87|96.87
+204|Thor Odinson|67.80|56.21|45.66
+205|Stan Lee|89.00|91.00|98.50
+206|Stan Smith|79.00|61.00|58.50
+207|Peter Griffin|59.00|51.00|68.50
+208|Louis Griffin|67.00|76.00|91.50
+205|Stewie Griggin|91.00|93.00|95.50
+206|Jack Shepard|93.00|81.38|88.00
+
+
+
+
+
